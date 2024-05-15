@@ -57,6 +57,7 @@ class TextNode extends LeafNode
         }
 
         // restore line breaks
+        $text = \parse_str($text);
         $text = \str_replace('&#10;', "\n", $text);
 
         $this->text = $text;
