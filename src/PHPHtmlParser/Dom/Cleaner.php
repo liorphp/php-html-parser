@@ -10,9 +10,6 @@ use PHPHtmlParser\Options;
 
 class Cleaner implements CleanerInterface
 {
-    mb_regex_encoding('UTF-8');
-    mb_regex_set_options('m');
-
     /**
      * Cleans the html of any none-html information.
      *
