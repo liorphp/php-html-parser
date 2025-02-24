@@ -10,6 +10,9 @@ use PHPHtmlParser\Options;
 
 class Cleaner implements CleanerInterface
 {
+    mb_regex_encoding('UTF-8');
+    mb_regex_set_options('m');
+
     /**
      * Cleans the html of any none-html information.
      *
@@ -74,7 +77,7 @@ class Cleaner implements CleanerInterface
 
         // strip out <script> tags
         if ($options->isRemoveScripts()) {
-            $str = \mb_eregi_replace("<\s*script[^>]*[^/]>(.*?)<\s*/\s*script\s*>", '', $str);
+            $str = preg_replace("/<\s*script[^>]*[^\/]>(.*?)<\s*\/\s*script\s*>/is", '', $str);
             if ($str === false) {
                 throw new LogicalException('mb_eregi_replace returned false instead of a string. Error when attempting to remove scripts 1.');
             }
